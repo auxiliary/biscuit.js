@@ -4,7 +4,7 @@ requirejs.config({
         "messaging"     : ["jquery"]
     }
 })
-requirejs(['jquery', 'jquery.cookie', 'messaging'], function(jQuery, jquery_cookie){
+requirejs(['jquery', 'jquery.cookie', 'biscuit'], function(jQuery, jquery_cookie){
     jQuery(".messages").messaging({
         'messages' :[
             {'text'  : 'This is a test', 'level' : 'info'},
