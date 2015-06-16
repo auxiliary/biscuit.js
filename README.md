@@ -1,2 +1,2 @@
 # biscuit.js
-A cookie based jQuery notification plugin
+A cookie based jQuery notification plugin (Under development)
