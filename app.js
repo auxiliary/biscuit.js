@@ -8,7 +8,7 @@ requirejs(['jquery', 'jquery.cookie', 'biscuit'], function(jQuery, jquery_cookie
     jQuery(".messages").messaging({
         'messages' :[
             {'text'  : 'This is a test', 'level' : 'info'},
-            {'text'  : 'Some notification', 'level' : 'error', 'hide': true},
+            {'text'  : 'Some notification', 'level' : 'error', 'hide': false},
             {'text'  : 'Something else', 'level' : 'success'},
         ]
     });

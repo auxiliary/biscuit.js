@@ -163,6 +163,7 @@
     {
         var icon = this.find_element(this.settings.messaging_icon_class);
         var closer = this.find_element(this.settings.messaging_close_class);
+        var minimizer = this.find_element(this.settings.messaging_minimize_icon_class);
         var text = this.find_element(this.settings.messaging_text_class);
         var messaging_context = this;
 
@@ -178,6 +179,12 @@
 					.fadeTo(400, 0).slideUp(400)
                 $(messaging_context.element).messaging("remove_from_cookie");
 			});
+
+            //If minimize button was clicked, hide but don't delete from cookie
+            minimizer.click(function(){
+                $(messaging_context.element).removeClass('animated flipInY')
+					.fadeTo(400, 0).slideUp(400)
+            })
 		}, this.settings.delay + 400);
     };
 
@@ -191,15 +198,16 @@
     };
 
     $.fn.messaging.settings = {
-        'messaging_icon_class'      : 'message-icon',
-        'messaging_close_class'     : 'message-close',
-        'messaging_text_class'      : 'message-text',
-        'messages_class'            : 'messages',
-        'delay'                     : 900,
-        'text'                      : '',
-        'level'                     : 'info',
-        'no_duplicates'             : true,
-        'hide'                      : false // Hide the message and not show it
+        'messaging_icon_class'          : 'message-icon',
+        'messaging_close_class'         : 'message-close',
+        'messaging_text_class'          : 'message-text',
+        'messages_class'                : 'messages',
+        'messaging_minimize_icon_class' : 'message-minimize',
+        'delay'                         : 900,
+        'text'                          : '',
+        'level'                         : 'info',
+        'no_duplicates'                 : true,
+        'hide'                          : false // Hide the message and not show it
     };
 
 }(jQuery));
