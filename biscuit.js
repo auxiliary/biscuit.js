@@ -28,8 +28,9 @@
             var cookie_messages = $.cookie('messages');
             for (var i in cookie_messages)
             {
-                var content = build(cookie_messages[i].text, cookie_messages[i].level);
-                this.append(content);
+                var settings = $.extend({}, $.fn.biscuit.settings, cookie_messages[i]);
+                var message = build(settings);
+                this.append(message);
             }
 
             //Create the notifications with the settings
@@ -88,30 +89,40 @@
         this.show();
     }
 
-    function build(content, level) {
-        var message_div = '<div class="message-container md-effect-1 hide ' +
-            level + '">';
-		var icon = '';
-		switch(level) {
-			case 'debug': icon = 'fa-bug'; break;
-			case 'info': icon = 'fa-info-circle'; break;
-			case 'success': icon = 'fa-thumbs-o-up'; break;
-			case 'warning': icon = 'fa-exclamation-triangle'; break;
-			case 'error': icon = 'fa-thumbs-o-down'; break;
-			default: console.log('invalid message level'); return;
-		}
-		message_div += '<div class="message-icon">';
-		message_div += '<i class="fa ' + icon + ' fa-4x allcenter"></i>';
-		message_div += '</div>';
+    function build(settings)
+    {
+        var content = settings.text;
+        var level = settings.level;
+        var effect = settings.effect;
+        // Determine the icon based on the level
+        var icon = '';
+        switch(level) {
+            case 'debug': icon = 'fa-bug'; break;
+            case 'info': icon = 'fa-info-circle'; break;
+            case 'success': icon = 'fa-thumbs-o-up'; break;
+            case 'warning': icon = 'fa-exclamation-triangle'; break;
+            case 'error': icon = 'fa-thumbs-o-down'; break;
+            default: console.log('invalid message level'); return;
+        }
 
-		message_div += '<div class="message-text">' + content;
-		message_div += '<div class="message-controls">';
-		message_div += '<i class="fa fa-minus-circle message-minimize"></i>';
-		message_div += '<i class="fa fa-times-circle message-close"></i>';
-		message_div += '</div>';
-		message_div += '</div>';
-
-		message_div += '</div>'
+        // Build the message and return it
+        var message_div = $('<div/>', {
+            'class': 'message-container hide ' + effect + ' ' + level
+        }).append(
+            $('<div/>', {'class': 'message-icon'}).append(
+                $('<i/>', {'class': 'fa fa-4x allcenter ' + icon})
+            )
+        )
+        .append(
+            $('<div/>', {'class': 'message-text', 'text': content}).append(
+                $('<div/>', {'class': 'message-controls'}).append(
+                    $('<i/>', {'class': 'fa fa-minus-circle message-minimize'})
+                )
+                .append(
+                    $('<i/>', {'class': 'fa fa-times-circle message-minimize'})
+                )
+            )
+        );
 
 		return message_div;
     };
@@ -170,7 +181,6 @@
 		}, this.settings.delay);
 
 		window.setTimeout(function() {
-			//text.toggle('slide').removeClass('hide');
             $(messaging_context.element).addClass("md-show");
 			closer.click(function() {
 				// Remove animate.css class first or fade fails
@@ -185,6 +195,11 @@
 					.fadeTo(400, 0).slideUp(400)
             })
 		}, this.settings.delay + 400);
+
+        if (this.settings.persistent == false)
+        {
+            this.remove_from_cookie();
+        }
     };
 
     /*
@@ -206,7 +221,9 @@
         'text'                          : '',
         'level'                         : 'info',
         'no_duplicates'                 : true,
-        'hide'                          : false // Hide the message and not show it
+        'hide'                          : false, // Hide the message and not show it
+        'effect'                        : 'md-effect-1',
+        'persistent'                    : true
     };
 
 }(jQuery, window));

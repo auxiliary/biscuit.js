@@ -14,13 +14,13 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            // $(".messages").biscuit({
-            //     'messages' :[
-            //         {'text'  : 'This is a test', 'level' : 'info'},
-            //         {'text'  : 'Some notification', 'level' : 'error', 'hide': false},
-            //         {'text'  : 'Something else', 'level' : 'success'},
-            //     ]
-            // });
+            $(".messages").biscuit({
+                'messages' :[
+                    {'text'  : 'This is a test', 'level' : 'info', 'effect': 'md-effect-9', 'persistent': false},
+                    {'text'  : 'Some notification', 'level' : 'error', 'hide': false},
+                    {'text'  : 'Something else', 'level' : 'success'},
+                ]
+            });
             $(".messages").biscuit("display");
         });
     </script>
