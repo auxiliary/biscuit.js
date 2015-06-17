@@ -2,10 +2,8 @@
     /*
      * Starting the plugin itself
      */
-    $.fn.messaging = function(options)
+    $.fn.biscuit = function(options)
     {
-        // Save the $.cookie.json setting and put it back after we're done.
-        var jquery_cookie_json_setting = $.cookie.json;
         $.cookie.json = true;
 
         /*
@@ -37,14 +35,14 @@
             //Create the notifications with the settings
             containers = this.find(".message-container");
             containers.each(function(i){
-                cookie_messages[i].delay = i * $.fn.messaging.settings.delay;
-                if (!$.data(this, "messaging"))
+                cookie_messages[i].delay = i * $.fn.biscuit.settings.delay;
+                if (!$.data(this, "biscuit"))
                 {
                     if (cookie_messages[i].hide === true)
                     {
                         return;
                     }
-                    $.data(this, "messaging", new Messaging(this, cookie_messages[i]));
+                    $.data(this, "biscuit", new Biscuit(this, cookie_messages[i]));
                 }
             });
         }
@@ -57,8 +55,8 @@
             var args = arguments;
             var returns;
             this.each(function(){
-                var instance = $.data(this, "messaging");
-                if (instance instanceof Messaging && typeof instance[options] === 'function')
+                var instance = $.data(this, "biscuit");
+                if (instance instanceof Biscuit && typeof instance[options] === 'function')
                 {
                     returns = instance[options].apply(instance, Array.prototype.slice.call(args, 1));
                 }
@@ -66,13 +64,13 @@
                 {
                     // Unbind all events and empty the plugin data from instance
                     $(instance.element).off();
-                    $.data(this, 'messaging', null);
+                    $.data(this, 'biscuit', null);
                 }
                 if (options === 'remove_all')
                 {
                     // Remove all messages from the cookie and the DOM
                     $.removeCookie('messages');
-                    $("." + $.fn.messaging.settings.messages_class).html('');
+                    $("." + $.fn.biscuit.settings.messages_class).html('');
                 }
             });
 
@@ -80,13 +78,13 @@
         }
 
         // Put back $.cooki.json's original value
-        $.cookie.json = jquery_cookie_json_setting;
+        //$.cookie.json = jquery_cookie_json_setting;
     };
 
-    function Messaging(element, options)
+    function Biscuit(element, options)
     {
         this.element = element;
-        this.settings = $.extend({}, $.fn.messaging.settings, options);
+        this.settings = $.extend({}, $.fn.biscuit.settings, options);
         this.show();
     }
 
@@ -130,7 +128,7 @@
         }
         else
         {
-            if ($.fn.messaging.settings.no_duplicates === true)
+            if ($.fn.biscuit.settings.no_duplicates === true)
             {
                 // Then search and check if this is a duplicate message
                 for (var i in cookie_messages)
@@ -146,7 +144,7 @@
         }
     };
 
-    Messaging.prototype.remove_from_cookie = function()
+    Biscuit.prototype.remove_from_cookie = function()
     {
         var cookie_messages = $.cookie('messages');
         for (var i in cookie_messages)
@@ -159,7 +157,7 @@
         $.cookie('messages', cookie_messages);
     };
 
-    Messaging.prototype.show = function()
+    Biscuit.prototype.show = function()
     {
         var icon = this.find_element(this.settings.messaging_icon_class);
         var closer = this.find_element(this.settings.messaging_close_class);
@@ -177,7 +175,7 @@
 				// Remove animate.css class first or fade fails
 				$(messaging_context.element).removeClass('animated flipInY')
 					.fadeTo(400, 0).slideUp(400)
-                $(messaging_context.element).messaging("remove_from_cookie");
+                $(messaging_context.element).biscuit("remove_from_cookie");
 			});
 
             //If minimize button was clicked, hide but don't delete from cookie
@@ -192,12 +190,12 @@
      * Finds an element inside the main 'messages' wrapper based on the
      * class name given
      */
-    Messaging.prototype.find_element = function(class_name)
+    Biscuit.prototype.find_element = function(class_name)
     {
         return $(this.element).find("." + class_name);
     };
 
-    $.fn.messaging.settings = {
+    $.fn.biscuit.settings = {
         'messaging_icon_class'          : 'message-icon',
         'messaging_close_class'         : 'message-close',
         'messaging_text_class'          : 'message-text',

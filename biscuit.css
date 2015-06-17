@@ -1,0 +1,79 @@
+.messages
+{
+    position: fixed;
+    z-index: 250;
+    top: 8rem;
+
+}
+.messages .message-container
+{
+    margin-bottom: 1.25rem;
+    margin-left: 1.25rem;
+    min-height: 3.125rem;
+    position: relative;
+}
+.messages .message-container .message-icon
+{
+    background-color: #fff;
+    min-height: 6.25rem;
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    width: 6.25rem;
+    z-index: 300 !important;
+}
+.messages .message-container.info .message-icon
+{
+    background-color: #87aad9;
+}
+.messages .message-container.error .message-icon
+{
+    background-color: #d00;
+}
+.messages .message-container.success .message-icon
+{
+    background-color: #21b384;
+}
+.messages .message-container.debug .message-icon
+{
+    background-color: #efe74a;
+}
+.messages .message-container .message-text
+{
+    background: #f2f2f2;
+    display: inline-block;
+    left: 6.25rem;
+    min-height: 6.25rem;
+    padding: 0.625rem;
+    position: absolute;
+    top: 0;
+    width: 18.75rem;
+    z-index: 250 !important;
+}
+.messages .message-container .message-text .message-controls
+{
+    position: absolute;
+    right: 0.3125rem;
+    text-align: right;
+    top: 0.3125rem;
+}
+
+.allcenter
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.hide
+{
+    display: none;
+}
+div
+{
+    margin: 0;
+    padding: 0;
+}
