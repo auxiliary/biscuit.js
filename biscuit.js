@@ -1,4 +1,4 @@
-;(function ($){
+;(function ($, window){
     /*
      * Starting the plugin itself
      */
@@ -89,7 +89,7 @@
     }
 
     function build(content, level) {
-        var message_div = '<div class="message-container hide ' +
+        var message_div = '<div class="message-container md-effect-1 hide ' +
             level + '">';
 		var icon = '';
 		switch(level) {
@@ -104,7 +104,7 @@
 		message_div += '<i class="fa ' + icon + ' fa-4x allcenter"></i>';
 		message_div += '</div>';
 
-		message_div += '<div class="message-text hide">' + content;
+		message_div += '<div class="message-text">' + content;
 		message_div += '<div class="message-controls">';
 		message_div += '<i class="fa fa-minus-circle message-minimize"></i>';
 		message_div += '<i class="fa fa-times-circle message-close"></i>';
@@ -170,7 +170,8 @@
 		}, this.settings.delay);
 
 		window.setTimeout(function() {
-			text.toggle('slide').removeClass('hide');
+			//text.toggle('slide').removeClass('hide');
+            $(messaging_context.element).addClass("md-show");
 			closer.click(function() {
 				// Remove animate.css class first or fade fails
 				$(messaging_context.element).removeClass('animated flipInY')
@@ -208,4 +209,4 @@
         'hide'                          : false // Hide the message and not show it
     };
 
-}(jQuery));
+}(jQuery, window));
