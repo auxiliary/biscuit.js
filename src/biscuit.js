@@ -5,7 +5,6 @@
     $.fn.biscuit = function(options)
     {
         $.cookie.json = true;
-        $.cookie.path = $.fn.biscuit.settings.path;
         /*
          * If the user is providing the content then add them to cookie
          * and don't make/show anything
@@ -66,7 +65,7 @@
                 if (options === 'remove_all')
                 {
                     // Remove all messages from the cookie and the DOM
-                    $.removeCookie('messages');
+                    $.removeCookie('messages', {path: $.fn.biscuit.settings.path});
                     $("." + $.fn.biscuit.settings.messages_class).html('');
                 }
             });
@@ -128,7 +127,7 @@
         {
             var cookie = []
             cookie.push(settings);
-            $.cookie('messages', cookie);
+            $.cookie('messages', cookie, {'path': $.fn.biscuit.settings.path});
         }
         else
         {
@@ -144,7 +143,7 @@
                 }
             }
             cookie_messages.push(settings);
-            $.cookie('messages', cookie_messages);
+            $.cookie('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
         }
     };
 
@@ -158,7 +157,7 @@
                 cookie_messages.splice(i, 1); //Remove from the cookie queue
             }
         }
-        $.cookie('messages', cookie_messages);
+        $.cookie('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
     };
 
     Biscuit.prototype.show = function()
