@@ -5,7 +5,7 @@
     $.fn.biscuit = function(options)
     {
         $.cookie.json = true;
-
+        $.cookie.path = $.fn.biscuit.settings.path;
         /*
          * If the user is providing the content then add them to cookie
          * and don't make/show anything
@@ -39,10 +39,6 @@
                 cookie_messages[i].delay = i * $.fn.biscuit.settings.delay;
                 if (!$.data(this, "biscuit"))
                 {
-                    if (cookie_messages[i].hide === true)
-                    {
-                        return;
-                    }
                     $.data(this, "biscuit", new Biscuit(this, cookie_messages[i]));
                 }
             });
@@ -77,9 +73,6 @@
 
             return returns !== undefined ? returns : this;
         }
-
-        // Put back $.cooki.json's original value
-        //$.cookie.json = jquery_cookie_json_setting;
     };
 
     function Biscuit(element, options)
@@ -119,7 +112,7 @@
                     $('<i/>', {'class': 'fa fa-minus-circle message-minimize'})
                 )
                 .append(
-                    $('<i/>', {'class': 'fa fa-times-circle message-minimize'})
+                    $('<i/>', {'class': 'fa fa-times-circle message-close'})
                 )
             )
         );
@@ -182,19 +175,23 @@
 
 		window.setTimeout(function() {
             $(messaging_context.element).addClass("md-show");
-			closer.click(function() {
+			closer.on('click', function() {
 				// Remove animate.css class first or fade fails
 				$(messaging_context.element).removeClass('animated flipInY')
-					.fadeTo(400, 0).slideUp(400)
+					.fadeTo(messaging_context.settings.text_show_delay, 0)
+                    .slideUp(messaging_context.settings.text_show_delay);
+
+
                 $(messaging_context.element).biscuit("remove_from_cookie");
 			});
 
             //If minimize button was clicked, hide but don't delete from cookie
-            minimizer.click(function(){
+            minimizer.on('click', function(){
                 $(messaging_context.element).removeClass('animated flipInY')
-					.fadeTo(400, 0).slideUp(400)
+					.fadeTo(messaging_context.settings.text_show_delay, 0)
+                    .slideUp(messaging_context.settings.text_show_delay)
             })
-		}, this.settings.delay + 400);
+		}, this.settings.delay + this.settings.text_show_delay);
 
         if (this.settings.persistent == false)
         {
@@ -217,13 +214,14 @@
         'messaging_text_class'          : 'message-text',
         'messages_class'                : 'messages',
         'messaging_minimize_icon_class' : 'message-minimize',
-        'delay'                         : 900,
+        'delay'                         : 500,
+        'text_show_delay'               : 200,
         'text'                          : '',
         'level'                         : 'info',
         'no_duplicates'                 : true,
-        'hide'                          : false, // Hide the message and not show it
         'effect'                        : 'md-effect-1',
-        'persistent'                    : true
+        'persistent'                    : true,
+        'path'                          : '/'
     };
 
 }(jQuery, window));
