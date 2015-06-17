@@ -5,6 +5,12 @@
     $.fn.biscuit = function(options)
     {
         $.cookie.json = true;
+
+        /*
+         * If desktop_notifications is true then ask for permission
+         */
+        Notification.requestPermission();
+
         /*
          * If the user is providing the content then add them to cookie
          * and don't make/show anything
@@ -14,6 +20,20 @@
             for (var i in options.messages)
             {
                 var message = options.messages[i];
+
+                /*
+                 * Getting crazy and merging settings with individual message
+                 * settings to enable more global settings, if needed.
+                 */
+                var global_settings = {}
+                for (var key in options)
+                {
+                    if (key !== 'messages')
+                    {
+                        global_settings[key] = options[key];
+                    }
+                }
+                message = $.extend(message, global_settings);
                 add_to_cookie(message);
             }
         }
@@ -27,6 +47,7 @@
             var cookie_messages = $.cookie('messages');
             for (var i in cookie_messages)
             {
+                console.log(cookie_messages[i]);
                 var settings = $.extend({}, $.fn.biscuit.settings, cookie_messages[i]);
                 var message = build(settings);
                 this.append(message);
@@ -66,7 +87,7 @@
                 {
                     // Remove all messages from the cookie and the DOM
                     $.removeCookie('messages', {path: $.fn.biscuit.settings.path});
-                    $("." + $.fn.biscuit.settings.messages_class).html('');
+                    $(this).html('');
                 }
             });
 
@@ -161,7 +182,7 @@
         }
         $.cookie('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
 
-        $(this.element).trigger("remove", {
+        $(this.element).trigger("message_remove", {
             id: this.settings.id,
             text: this.text
         });
@@ -169,12 +190,13 @@
 
     Biscuit.prototype.show = function()
     {
-        var icon = this.find_element(this.settings.messaging_icon_class);
-        var closer = this.find_element(this.settings.messaging_close_class);
-        var minimizer = this.find_element(this.settings.messaging_minimize_icon_class);
-        var text = this.find_element(this.settings.messaging_text_class);
+        var icon = $(this.element).find('.message-icon');
+        var closer = $(this.element).find('.message-close');
+        var minimizer = $(this.element).find('.message-minimize');
+        var text = $(this.element).find('.message-text');
         var messaging_context = this;
 
+        // Animations for showing the message
 		window.setTimeout(function() {
 			$(messaging_context.element).removeClass('hide').addClass('animated flipInY');
 		}, this.settings.delay);
@@ -196,19 +218,21 @@
             });
 		}, this.settings.delay + this.settings.text_show_delay);
 
+        //Show desktop notifications if enabled
+        if (this.settings.desktop_notifications == true)
+        {
+            var desktop_notification_options = {
+                body: text.text(),
+                icon: this.settings.icon
+            };
+
+            var desktop_notification = new Notification('', desktop_notification_options);
+        }
+
         if (this.settings.persistent == false)
         {
             this.remove_from_cookie();
         }
-    };
-
-    /*
-     * Finds an element inside the main 'messages' wrapper based on the
-     * class name given
-     */
-    Biscuit.prototype.find_element = function(class_name)
-    {
-        return $(this.element).find("." + class_name);
     };
 
     Biscuit.prototype.hide = function()
@@ -217,26 +241,24 @@
             .fadeTo(this.settings.text_show_delay, 0)
             .slideUp(this.settings.text_show_delay);
 
-        $(this.element).trigger("hide", {
+        $(this.element).trigger("message_hide", {
             id: this.settings.id,
             text: this.text
         });
     };
 
     $.fn.biscuit.settings = {
-        'messaging_icon_class'          : 'message-icon',
-        'messaging_close_class'         : 'message-close',
-        'messaging_text_class'          : 'message-text',
         'messages_class'                : 'messages',
-        'messaging_minimize_icon_class' : 'message-minimize',
         'delay'                         : 500,
         'text_show_delay'               : 200,
         'text'                          : '',
         'level'                         : 'info',
         'effect'                        : 'md-effect-1',
         'path'                          : '/',
+        'icon'                          : '',
         'no_duplicates'                 : true,
-        'persistent'                    : true
+        'persistent'                    : true,
+        'desktop_notifications'         : true
     };
 
 }(jQuery, window));
