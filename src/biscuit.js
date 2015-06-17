@@ -106,7 +106,7 @@
             )
         )
         .append(
-            $('<div/>', {'class': 'message-text', 'text': content}).append(
+            $('<div/>', {'class': 'message-text', 'html': content}).append(
                 $('<div/>', {'class': 'message-controls'}).append(
                     $('<i/>', {'class': 'fa fa-minus-circle message-minimize'})
                 )
