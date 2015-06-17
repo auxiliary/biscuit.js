@@ -86,6 +86,7 @@
         var content = settings.text;
         var level = settings.level;
         var effect = settings.effect;
+        var id = settings.id;
         // Determine the icon based on the level
         var icon = '';
         switch(level) {
@@ -99,7 +100,8 @@
 
         // Build the message and return it
         var message_div = $('<div/>', {
-            'class': 'message-container hide ' + effect + ' ' + level
+            'class': 'message-container hide ' + effect + ' ' + level,
+            'id': id === undefined ? '' : id
         }).append(
             $('<div/>', {'class': 'message-icon'}).append(
                 $('<i/>', {'class': 'fa fa-4x allcenter ' + icon})
@@ -158,6 +160,11 @@
             }
         }
         $.cookie('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
+
+        $(this.element).trigger("remove", {
+            id: this.settings.id,
+            text: this.text
+        });
     };
 
     Biscuit.prototype.show = function()
@@ -180,16 +187,13 @@
 					.fadeTo(messaging_context.settings.text_show_delay, 0)
                     .slideUp(messaging_context.settings.text_show_delay);
 
-
                 $(messaging_context.element).biscuit("remove_from_cookie");
 			});
 
             //If minimize button was clicked, hide but don't delete from cookie
             minimizer.on('click', function(){
-                $(messaging_context.element).removeClass('animated flipInY')
-					.fadeTo(messaging_context.settings.text_show_delay, 0)
-                    .slideUp(messaging_context.settings.text_show_delay)
-            })
+                messaging_context.hide();
+            });
 		}, this.settings.delay + this.settings.text_show_delay);
 
         if (this.settings.persistent == false)
@@ -207,6 +211,18 @@
         return $(this.element).find("." + class_name);
     };
 
+    Biscuit.prototype.hide = function()
+    {
+        $(this.element).removeClass('animated flipInY')
+            .fadeTo(this.settings.text_show_delay, 0)
+            .slideUp(this.settings.text_show_delay);
+
+        $(this.element).trigger("hide", {
+            id: this.settings.id,
+            text: this.text
+        });
+    };
+
     $.fn.biscuit.settings = {
         'messaging_icon_class'          : 'message-icon',
         'messaging_close_class'         : 'message-close',
@@ -217,10 +233,10 @@
         'text_show_delay'               : 200,
         'text'                          : '',
         'level'                         : 'info',
-        'no_duplicates'                 : true,
         'effect'                        : 'md-effect-1',
-        'persistent'                    : true,
-        'path'                          : '/'
+        'path'                          : '/',
+        'no_duplicates'                 : true,
+        'persistent'                    : true
     };
 
 }(jQuery, window));
