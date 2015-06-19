@@ -67,6 +67,7 @@
     width: 18.75rem;
     z-index: 250 !important;
     border: 1px solid #ccc;
+    background-color: #fff;
 }
 .messages .message-container.dark .message-text
 {
