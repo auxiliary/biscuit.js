@@ -131,20 +131,23 @@
      */
     function build(settings)
     {
-        var content = settings.text;
-        var level = settings.level;
-        var effect = settings.effect;
-        var id = settings.id;
-        var minimize_icon_visibility = settings.show_minimize_icon ? '' : 'hide';
+        var content                     = settings.text;
+        var level                       = settings.level;
+        var effect                      = settings.effect;
+        var id                          = settings.id;
+        var minimize_icon_visibility    = settings.show_minimize_icon ? '' : 'hide';
+        var icon_visibility             = settings.show_icon ? '' : 'invisible';
+        var icon                        = '';
+
         // Determine the icon based on the level
-        var icon = '';
-        switch(level) {
-            case 'debug': icon = 'fa-bug'; break;
-            case 'info': icon = 'fa-info-circle'; break;
-            case 'success': icon = 'fa-thumbs-o-up'; break;
-            case 'warning': icon = 'fa-exclamation-triangle'; break;
-            case 'error': icon = 'fa-thumbs-o-down'; break;
-            default: console.log('invalid message level'); return;
+        switch (level)
+        {
+            case 'debug'    : icon = 'fa-bug'; break;
+            case 'info'     : icon = 'fa-info-circle'; break;
+            case 'success'  : icon = 'fa-thumbs-o-up'; break;
+            case 'warning'  : icon = 'fa-exclamation-triangle'; break;
+            case 'error'    : icon = 'fa-thumbs-o-down'; break;
+            default         : console.log('invalid message level'); return;
         }
 
         // Build the message and return it
@@ -152,7 +155,7 @@
             'class': 'message-container hide ' + effect + ' ' + level,
             'id': id === undefined ? '' : id
         }).append(
-            $('<div/>', {'class': 'message-icon'}).append(
+            $('<div/>', {'class': 'message-icon ' + icon_visibility}).append(
                 $('<i/>', {'class': 'fa fa-4x allcenter ' + icon})
             )
         )
@@ -307,6 +310,7 @@
         'effect'                        : 'biscuit-effect-1',
         'path'                          : '/',
         'icon'                          : '',
+        'show_icon'                     : true,
         'show_minimize_icon'            : true,
         'no_duplicates'                 : true,
         'persistent'                    : true,

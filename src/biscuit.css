@@ -41,6 +41,10 @@
 {
     background-color: #efe74a;
 }
+.messages .message-container .message-icon.invisible
+{
+    visibility: hidden;
+}
 .messages .message-container .message-text
 {
     display: inline-block;
