@@ -1,0 +1,28 @@
+{
+  "name": "biscuit.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/auxiliary/biscuit.js",
+  "description": "A customizable cookie based jQuery notification plugin with nifty animations and persistence",
+  "main": "biscuit.js",
+  "keywords": [
+    "notification",
+    "cookie",
+    "plugin",
+    "persistent"
+  ],
+  "authors": [
+    "Mohammad A.Raji"
+  ],
+  "dependencies": {
+      "jquery" : "~1.11.0",
+      "jquery.cookie": "~1.4.1"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
