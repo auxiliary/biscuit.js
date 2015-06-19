@@ -242,7 +242,7 @@
                 setTimeout(desktop_notification.close.bind(desktop_notification),
                     messaging_context.settings.desktop_notification_timeout);
             }
-        }, 1000);
+        }, 100);
 
         if (this.settings.persistent == false)
         {
