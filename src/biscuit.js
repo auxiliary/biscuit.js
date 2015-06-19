@@ -9,7 +9,10 @@
         /*
          * If desktop_notifications is true then ask for permission
          */
-        Notification.requestPermission();
+        if (options.desktop_notifications === true)
+        {
+            Notification.requestPermission();
+        }
 
         /*
          * If the user is providing the content then add them to cookie
@@ -47,7 +50,6 @@
             var cookie_messages = $.cookie('messages');
             for (var i in cookie_messages)
             {
-                console.log(cookie_messages[i]);
                 var settings = $.extend({}, $.fn.biscuit.settings, cookie_messages[i]);
                 var message = build(settings);
                 this.append(message);
@@ -102,6 +104,9 @@
         this.show();
     }
 
+    /*
+     * Build a message for being added to the DOM
+     */
     function build(settings)
     {
         var content = settings.text;
@@ -142,6 +147,9 @@
 		return message_div;
     };
 
+    /*
+     * Add a message along with its settings to the cookie
+     */
     function add_to_cookie(settings)
     {
         //Get current list of messages from cookie
@@ -170,6 +178,9 @@
         }
     };
 
+    /*
+     * Remove a message from the cookie and trigger the user defined callback
+     */
     Biscuit.prototype.remove_from_cookie = function()
     {
         var cookie_messages = $.cookie('messages');
@@ -219,15 +230,19 @@
 		}, this.settings.delay + this.settings.text_show_delay);
 
         //Show desktop notifications if enabled
-        if (this.settings.desktop_notifications == true)
-        {
-            var desktop_notification_options = {
-                body: text.text(),
-                icon: this.settings.icon
-            };
+        window.setTimeout(function(){
+            if (messaging_context.settings.desktop_notifications === true && document.visibilityState !== 'prerender')
+            {
+                var desktop_notification_options = {
+                    body: text.text(),
+                    icon: messaging_context.icon
+                };
 
-            var desktop_notification = new Notification('', desktop_notification_options);
-        }
+                var desktop_notification = new Notification('', desktop_notification_options);
+                setTimeout(desktop_notification.close.bind(desktop_notification),
+                    messaging_context.settings.desktop_notification_timeout);
+            }
+        }, 1000);
 
         if (this.settings.persistent == false)
         {
@@ -235,6 +250,9 @@
         }
     };
 
+    /*
+     * Hide the message for now and trigger the user defined callback
+     */
     Biscuit.prototype.hide = function()
     {
         $(this.element).removeClass('animated flipInY')
@@ -258,7 +276,8 @@
         'icon'                          : '',
         'no_duplicates'                 : true,
         'persistent'                    : true,
-        'desktop_notifications'         : true
+        'desktop_notifications'         : false,
+        'desktop_notification_timeout'   : 5000
     };
 
 }(jQuery, window));
