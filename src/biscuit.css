@@ -3,7 +3,7 @@
     position: fixed;
     z-index: 250;
     top: 8rem;
-    font-family: "Open Sans",Arial,sans-serif;
+    font-family: "Open Sans", Arial,sans-serif;
     font-weight: normal;
     font-style: normal;
     line-height: 150%;
@@ -23,6 +23,7 @@
     padding-top: 1rem;
     width: 6.25rem;
     z-index: 300 !important;
+    color: #444;
 }
 .messages .message-container.info .message-icon
 {
@@ -30,7 +31,7 @@
 }
 .messages .message-container.error .message-icon
 {
-    background-color: #d00;
+    background-color: #E63E2C;
 }
 .messages .message-container.success .message-icon
 {
@@ -42,7 +43,6 @@
 }
 .messages .message-container .message-text
 {
-    background: #E5DA7A;
     display: inline-block;
     left: 6.25rem;
     min-height: 6.25rem;
@@ -52,11 +52,11 @@
     top: 0;
     width: 18.75rem;
     z-index: 250 !important;
+    border: 1px solid #ccc;
 }
 .messages .message-container .message-text.hide
 {
     display: none;
-    opacity: 1;
 }
 .messages .message-container .message-text .message-controls
 {

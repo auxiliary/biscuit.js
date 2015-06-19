@@ -135,6 +135,7 @@
         var level = settings.level;
         var effect = settings.effect;
         var id = settings.id;
+        var minimize_icon_visibility = settings.show_minimize_icon ? '' : 'hide';
         // Determine the icon based on the level
         var icon = '';
         switch(level) {
@@ -158,7 +159,7 @@
         .append(
             $('<div/>', {'class': 'message-text', 'html': content}).append(
                 $('<div/>', {'class': 'message-controls'}).append(
-                    $('<i/>', {'class': 'fa fa-minus-circle message-minimize'})
+                    $('<i/>', {'class': 'fa fa-minus-circle message-minimize ' + minimize_icon_visibility})
                 )
                 .append(
                     $('<i/>', {'class': 'fa fa-times-circle message-close'})
@@ -306,6 +307,7 @@
         'effect'                        : 'biscuit-effect-1',
         'path'                          : '/',
         'icon'                          : '',
+        'show_minimize_icon'            : true,
         'no_duplicates'                 : true,
         'persistent'                    : true,
         'desktop_notifications'         : false,
