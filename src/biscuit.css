@@ -56,6 +56,7 @@
 .messages .message-container .message-text.hide
 {
     display: none;
+    opacity: 1;
 }
 .messages .message-container .message-text .message-controls
 {

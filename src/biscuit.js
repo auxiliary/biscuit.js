@@ -79,6 +79,11 @@
                 {
                     returns = instance[options].apply(instance, Array.prototype.slice.call(args, 1));
                 }
+
+                /*
+                 * These are functions that effect all messages globally,
+                 * therefor they have to be called on the main container itself
+                 */
                 if (options === 'destroy')
                 {
                     // Unbind all events and empty the plugin data from instance
@@ -90,6 +95,23 @@
                     // Remove all messages from the cookie and the DOM
                     $.removeCookie('messages', {path: $.fn.biscuit.settings.path});
                     $(this).html('');
+                }
+                if (options === 'hide_all')
+                {
+                    $(this).find('.message-container').each(function(){
+                        $(this).biscuit("hide");
+                    });
+                }
+                if (options === 'show_all')
+                {
+                    $(this).find('.message-container').each(function(){
+                        $(this).biscuit("show");
+                    });
+                }
+                // Returns the message-container elements for each message
+                if (options === 'get_messages')
+                {
+                    returns = $(this).find('.message-container');
                 }
             });
 
@@ -194,18 +216,18 @@
         $.cookie('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
 
         $(this.element).trigger("message_remove", {
-            id: this.settings.id,
+            id  : this.settings.id,
             text: this.text
         });
     };
 
     Biscuit.prototype.show = function()
     {
-        var icon = $(this.element).find('.message-icon');
-        var closer = $(this.element).find('.message-close');
-        var minimizer = $(this.element).find('.message-minimize');
-        var text = $(this.element).find('.message-text');
-        var messaging_context = this;
+        var icon                = $(this.element).find('.message-icon');
+        var closer              = $(this.element).find('.message-close');
+        var minimizer           = $(this.element).find('.message-minimize');
+        var text                = $(this.element).find('.message-text');
+        var messaging_context   = this;
 
         // Animations for showing the message
 		window.setTimeout(function() {
@@ -229,13 +251,19 @@
             });
 		}, this.settings.delay + this.settings.text_show_delay);
 
-        //Show desktop notifications if enabled
+        /*
+         * Show desktop notifications if enabled.
+         * We need to check for visibilityState to prevent it popping up in
+         * the prerender phase. Also, we need the timer to prevent Firefox from
+         * messing it up.
+         */
         window.setTimeout(function(){
             if (messaging_context.settings.desktop_notifications === true && document.visibilityState !== 'prerender')
             {
                 var desktop_notification_options = {
                     body: text.text(),
-                    icon: messaging_context.icon
+                    icon: messaging_context.icon,
+                    tag : text.text()
                 };
 
                 var desktop_notification = new Notification('', desktop_notification_options);
@@ -257,10 +285,14 @@
     {
         $(this.element).removeClass('animated flipInY')
             .fadeTo(this.settings.text_show_delay, 0)
-            .slideUp(this.settings.text_show_delay);
+            .slideUp(this.settings.text_show_delay, function(){
+                $(this).addClass('hide')
+                    .removeAttr('style')
+                    .removeClass('md-show animated flipInY')
+            });
 
         $(this.element).trigger("message_hide", {
-            id: this.settings.id,
+            id  : this.settings.id,
             text: this.text
         });
     };
