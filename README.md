@@ -44,6 +44,7 @@ $.fn.biscuit.settings = {
   'effect'                        : 'biscuit-effect-1', //From biscuit-effect-1 to biscuit-effect-19 are available
   'path'                          : '/',
   'icon'                          : '',
+  'dark_theme'                    : false,
   'show_icon'                     : true,
   'show_minimize_icon'            : true,
   'no_duplicates'                 : true,
@@ -59,11 +60,11 @@ Options can be set globally for all messages when setting them like this:
 $(".messages").biscuit({
   'messages' :[
       {
-        'text'  : 'This is a normal error message', 
+        'text'  : 'This is a normal error message',
         'level' : 'error'
       },
       {
-        'text'  : 'This is a normal success message with a <a href="#">link</a>', 
+        'text'  : 'This is a normal success message with a <a href="#">link</a>',
         'level' : 'success'
       }
   ],
@@ -80,15 +81,15 @@ Or by setting them individually for each message:
 $(".messages").biscuit({
   'messages' :[
       {
-        'text'  : 'This is a non-persistent message', 
-        'level' : 'info', 
-        'effect': 'biscuit-effect-9', 
+        'text'  : 'This is a non-persistent message',
+        'level' : 'info',
+        'effect': 'biscuit-effect-9',
         'persistent': false
       },
       {
-        'text'  : 'This is a normal success message with a <a href="#">link</a>', 
-        'level' : 'success', 
-        'id': 'custom_id', 
+        'text'  : 'This is a normal success message with a <a href="#">link</a>',
+        'level' : 'success',
+        'id': 'custom_id',
         'show_minimize_icon': false
       }
   ]

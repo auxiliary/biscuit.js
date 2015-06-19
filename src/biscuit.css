@@ -25,6 +25,16 @@
     z-index: 300 !important;
     color: #444;
 }
+
+.messages .message-container.dark.debug .message-icon,
+.messages .message-container.dark.info .message-icon,
+.messages .message-container.dark.error .message-icon,
+.messages .message-container.dark.success .message-icon
+{
+    background-color: #000;
+    color: #eee;
+}
+
 .messages .message-container.info .message-icon
 {
     background-color: #87aad9;
@@ -57,6 +67,12 @@
     width: 18.75rem;
     z-index: 250 !important;
     border: 1px solid #ccc;
+}
+.messages .message-container.dark .message-text
+{
+    background-color: rgba(0, 0, 0, 0.8);;
+    color: #eee;
+    border: 0;
 }
 .messages .message-container .message-text.hide
 {

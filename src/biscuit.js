@@ -136,6 +136,7 @@
         var effect                      = settings.effect;
         var id                          = settings.id;
         var minimize_icon_visibility    = settings.show_minimize_icon ? '' : 'hide';
+        var dark_theme_class            = settings.dark_theme ? 'dark' : '';
         var icon_visibility             = settings.show_icon ? '' : 'invisible';
         var icon                        = '';
 
@@ -152,7 +153,7 @@
 
         // Build the message and return it
         var message_div = $('<div/>', {
-            'class': 'message-container hide ' + effect + ' ' + level,
+            'class': 'message-container hide ' + effect + ' ' + level + ' ' + dark_theme_class,
             'id': id === undefined ? '' : id
         }).append(
             $('<div/>', {'class': 'message-icon ' + icon_visibility}).append(
@@ -302,7 +303,6 @@
     };
 
     $.fn.biscuit.settings = {
-        'messages_class'                : 'messages',
         'delay'                         : 500,
         'text_show_delay'               : 200,
         'text'                          : '',
@@ -310,6 +310,7 @@
         'effect'                        : 'biscuit-effect-1',
         'path'                          : '/',
         'icon'                          : '',
+        'dark_theme'                    : false,
         'show_icon'                     : true,
         'show_minimize_icon'            : true,
         'no_duplicates'                 : true,
