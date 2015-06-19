@@ -7,7 +7,7 @@ perspective effects (not including the modals and the overlay).
 */
 
 
-.md-show {
+.biscuit-show {
 	visibility: visible;
 }
 
@@ -15,7 +15,7 @@ perspective effects (not including the modals and the overlay).
 /* Individual modal styles with animations/transitions */
 
 /* Effect 1: Fade in and scale up */
-.md-effect-1 .message-text {
+.biscuit-effect-1  {
 	-webkit-transform: scale(0.7);
 	-moz-transform: scale(0.7);
 	-ms-transform: scale(0.7);
@@ -26,7 +26,7 @@ perspective effects (not including the modals and the overlay).
 	transition: all 0.3s;
 }
 
-.md-show.md-effect-1 .message-text {
+.biscuit-show.biscuit-effect-1  {
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -35,7 +35,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 2: Slide from the right */
-.md-effect-2 .message-text {
+.biscuit-effect-2  {
 	-webkit-transform: translateX(20%);
 	-moz-transform: translateX(20%);
 	-ms-transform: translateX(20%);
@@ -46,7 +46,7 @@ perspective effects (not including the modals and the overlay).
 	transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 
-.md-show.md-effect-2 .message-text {
+.biscuit-show.biscuit-effect-2  {
 	-webkit-transform: translateX(0);
 	-moz-transform: translateX(0);
 	-ms-transform: translateX(0);
@@ -55,7 +55,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 3: Slide from the bottom */
-.md-effect-3 .message-text {
+.biscuit-effect-3  {
 	-webkit-transform: translateY(20%);
 	-moz-transform: translateY(20%);
 	-ms-transform: translateY(20%);
@@ -66,7 +66,7 @@ perspective effects (not including the modals and the overlay).
 	transition: all 0.3s;
 }
 
-.md-show.md-effect-3 .message-text {
+.biscuit-show.biscuit-effect-3  {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);
@@ -75,7 +75,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 4: Newspaper */
-.md-effect-4 .message-text {
+.biscuit-effect-4  {
 	-webkit-transform: scale(0) rotate(720deg);
 	-moz-transform: scale(0) rotate(720deg);
 	-ms-transform: scale(0) rotate(720deg);
@@ -83,14 +83,14 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-4 ~ .md-overlay,
-.md-effect-4 .message-text {
+.biscuit-show.biscuit-effect-4 ~ .biscuit-overlay,
+.biscuit-effect-4  {
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
 }
 
-.md-show.md-effect-4 .message-text {
+.biscuit-show.biscuit-effect-4  {
 	-webkit-transform: scale(1) rotate(0deg);
 	-moz-transform: scale(1) rotate(0deg);
 	-ms-transform: scale(1) rotate(0deg);
@@ -99,13 +99,13 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 5: fall */
-.md-effect-5.md-modal {
+.biscuit-effect-5.biscuit-modal {
 	-webkit-perspective: 1300px;
 	-moz-perspective: 1300px;
 	perspective: 1300px;
 }
 
-.md-effect-5 .message-text {
+.biscuit-effect-5  {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -116,7 +116,7 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-5 .message-text {
+.biscuit-show.biscuit-effect-5  {
 	-webkit-transition: all 0.3s ease-in;
 	-moz-transition: all 0.3s ease-in;
 	transition: all 0.3s ease-in;
@@ -128,13 +128,13 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 6: side fall */
-.md-effect-6.md-modal {
+.biscuit-effect-6.biscuit-modal {
 	-webkit-perspective: 1300px;
 	-moz-perspective: 1300px;
 	perspective: 1300px;
 }
 
-.md-effect-6 .message-text {
+.biscuit-effect-6  {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -145,7 +145,7 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-6 .message-text {
+.biscuit-show.biscuit-effect-6  {
 	-webkit-transition: all 0.3s ease-in;
 	-moz-transition: all 0.3s ease-in;
 	transition: all 0.3s ease-in;
@@ -157,7 +157,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 7:  slide and stick to top */
-.md-effect-7{
+.biscuit-effect-7{
 	top: 0;
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
@@ -165,7 +165,7 @@ perspective effects (not including the modals and the overlay).
 	transform: translateX(-50%);
 }
 
-.md-effect-7 .message-text {
+.biscuit-effect-7  {
 	-webkit-transform: translateY(-200%);
 	-moz-transform: translateY(-200%);
 	-ms-transform: translateY(-200%);
@@ -176,7 +176,7 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-7 .message-text {
+.biscuit-show.biscuit-effect-7  {
 	-webkit-transform: translateY(0%);
 	-moz-transform: translateY(0%);
 	-ms-transform: translateY(0%);
@@ -186,13 +186,13 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 8: 3D flip horizontal */
-.md-effect-8.md-modal {
+.biscuit-effect-8.biscuit-modal {
 	-webkit-perspective: 1300px;
 	-moz-perspective: 1300px;
 	perspective: 1300px;
 }
 
-.md-effect-8 .message-text {
+.biscuit-effect-8  {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -206,7 +206,7 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-8 .message-text {
+.biscuit-show.biscuit-effect-8  {
 	-webkit-transform: rotateY(0deg);
 	-moz-transform: rotateY(0deg);
 	-ms-transform: rotateY(0deg);
@@ -215,13 +215,13 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 9: 3D flip vertical */
-.md-effect-9.md-modal {
+.biscuit-effect-9.biscuit-modal {
 	-webkit-perspective: 1300px;
 	-moz-perspective: 1300px;
 	perspective: 1300px;
 }
 
-.md-effect-9 .message-text {
+.biscuit-effect-9  {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -235,7 +235,7 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-9 .message-text {
+.biscuit-show.biscuit-effect-9  {
 	-webkit-transform: rotateX(0deg);
 	-moz-transform: rotateX(0deg);
 	-ms-transform: rotateX(0deg);
@@ -244,13 +244,13 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 10: 3D sign */
-.md-effect-10.md-modal {
+.biscuit-effect-10.biscuit-modal {
 	-webkit-perspective: 1300px;
 	-moz-perspective: 1300px;
 	perspective: 1300px;
 }
 
-.md-effect-10 .message-text {
+.biscuit-effect-10  {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -267,7 +267,7 @@ perspective effects (not including the modals and the overlay).
 	transition: all 0.3s;
 }
 
-.md-show.md-effect-10 .message-text {
+.biscuit-show.biscuit-effect-10  {
 	-webkit-transform: rotateX(0deg);
 	-moz-transform: rotateX(0deg);
 	-ms-transform: rotateX(0deg);
@@ -276,7 +276,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 11: Super scaled */
-.md-effect-11 .message-text {
+.biscuit-effect-11  {
 	-webkit-transform: scale(2);
 	-moz-transform: scale(2);
 	-ms-transform: scale(2);
@@ -287,7 +287,7 @@ perspective effects (not including the modals and the overlay).
 	transition: all 0.3s;
 }
 
-.md-show.md-effect-11 .message-text {
+.biscuit-show.biscuit-effect-11  {
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -296,7 +296,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 12:  Just me */
-.md-effect-12 .message-text {
+.biscuit-effect-12  {
 	-webkit-transform: scale(0.8);
 	-moz-transform: scale(0.8);
 	-ms-transform: scale(0.8);
@@ -307,16 +307,16 @@ perspective effects (not including the modals and the overlay).
 	transition: all 0.3s;
 }
 
-.md-show.md-effect-12 ~ .md-overlay {
+.biscuit-show.biscuit-effect-12 ~ .biscuit-overlay {
 	background: #e74c3c;
 }
 
-.md-effect-12 .message-text h3,
-.md-effect-12 .message-text {
+.biscuit-effect-12  h3,
+.biscuit-effect-12  {
 	background: transparent;
 }
 
-.md-show.md-effect-12 .message-text {
+.biscuit-show.biscuit-effect-12  {
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -325,13 +325,13 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 13: 3D slit */
-.md-effect-13.md-modal {
+.biscuit-effect-13.biscuit-modal {
 	-webkit-perspective: 1300px;
 	-moz-perspective: 1300px;
 	perspective: 1300px;
 }
 
-.md-effect-13 .message-text {
+.biscuit-effect-13  {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -342,7 +342,7 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-13 .message-text {
+.biscuit-show.biscuit-effect-13  {
 	-webkit-animation: slit .7s forwards ease-out;
 	-moz-animation: slit .7s forwards ease-out;
 	animation: slit .7s forwards ease-out;
@@ -364,13 +364,13 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 14:  3D Rotate from bottom */
-.md-effect-14.md-modal {
+.biscuit-effect-14.biscuit-modal {
 	-webkit-perspective: 1300px;
 	-moz-perspective: 1300px;
 	perspective: 1300px;
 }
 
-.md-effect-14 .message-text {
+.biscuit-effect-14  {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -387,7 +387,7 @@ perspective effects (not including the modals and the overlay).
 	transition: all 0.3s ease-out;
 }
 
-.md-show.md-effect-14 .message-text {
+.biscuit-show.biscuit-effect-14  {
 	-webkit-transform: translateY(0%) rotateX(0deg);
 	-moz-transform: translateY(0%) rotateX(0deg);
 	-ms-transform: translateY(0%) rotateX(0deg);
@@ -396,13 +396,13 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 15:  3D Rotate in from left */
-.md-effect-15.md-modal {
+.biscuit-effect-15.biscuit-modal {
 	-webkit-perspective: 1300px;
 	-moz-perspective: 1300px;
 	perspective: 1300px;
 }
 
-.md-effect-15 .message-text {
+.biscuit-effect-15  {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -419,7 +419,7 @@ perspective effects (not including the modals and the overlay).
 	transition: all 0.3s;
 }
 
-.md-show.md-effect-15 .message-text {
+.biscuit-show.biscuit-effect-15  {
 	-webkit-transform: translateZ(0px) translateX(0%) rotateY(0deg);
 	-moz-transform: translateZ(0px) translateX(0%) rotateY(0deg);
 	-ms-transform: translateZ(0px) translateX(0%) rotateY(0deg);
@@ -428,17 +428,17 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 16:  Blur */
-.md-show.md-effect-16 ~ .md-overlay {
+.biscuit-show.biscuit-effect-16 ~ .biscuit-overlay {
 	background: rgba(180,46,32,0.5);
 }
 
-.md-show.md-effect-16 ~ .container {
+.biscuit-show.biscuit-effect-16 ~ .container {
 	-webkit-filter: blur(3px);
 	-moz-filter: blur(3px);
 	filter: blur(3px);
 }
 
-.md-effect-16 .message-text {
+.biscuit-effect-16  {
 	-webkit-transform: translateY(-5%);
 	-moz-transform: translateY(-5%);
 	-ms-transform: translateY(-5%);
@@ -446,14 +446,14 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-16 ~ .container,
-.md-effect-16 .message-text {
+.biscuit-show.biscuit-effect-16 ~ .container,
+.biscuit-effect-16  {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
 }
 
-.md-show.md-effect-16 .message-text {
+.biscuit-show.biscuit-effect-16  {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);
@@ -462,7 +462,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 17:  Slide in from bottom with perspective on container */
-.md-show.md-effect-17 ~ .container {
+.biscuit-show.biscuit-effect-17 ~ .container {
 	height: 100%;
 	overflow: hidden;
 	-webkit-transition: -webkit-transform 0.3s;
@@ -470,8 +470,8 @@ perspective effects (not including the modals and the overlay).
 	transition: transform 0.3s;
 }
 
-.md-show.md-effect-17 ~ .container,
-.md-show.md-effect-17 ~ .md-overlay  {
+.biscuit-show.biscuit-effect-17 ~ .container,
+.biscuit-show.biscuit-effect-17 ~ .biscuit-overlay  {
 	-webkit-transform: rotateX(-2deg);
 	-moz-transform: rotateX(-2deg);
 	-ms-transform: rotateX(-2deg);
@@ -484,7 +484,7 @@ perspective effects (not including the modals and the overlay).
 	transform-style: preserve-3d;
 }
 
-.md-effect-17 .message-text {
+.biscuit-effect-17  {
 	opacity: 0;
 	-webkit-transform: translateY(200%);
 	-moz-transform: translateY(200%);
@@ -492,7 +492,7 @@ perspective effects (not including the modals and the overlay).
 	transform: translateY(200%);
 }
 
-.md-show.md-effect-17 .message-text {
+.biscuit-show.biscuit-effect-17  {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);
@@ -504,20 +504,20 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 18:  Slide from right with perspective on container */
-.md-show.md-effect-18 ~ .container {
+.biscuit-show.biscuit-effect-18 ~ .container {
 	height: 100%;
 	overflow: hidden;
 }
 
-.md-show.md-effect-18 ~ .md-overlay {
+.biscuit-show.biscuit-effect-18 ~ .biscuit-overlay {
 	background: rgba(143,27,15,0.8);
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
 }
 
-.md-show.md-effect-18 ~ .container,
-.md-show.md-effect-18 ~ .md-overlay {
+.biscuit-show.biscuit-effect-18 ~ .container,
+.biscuit-show.biscuit-effect-18 ~ .biscuit-overlay {
 	-webkit-transform-style: preserve-3d;
 	-webkit-transform-origin: 0% 50%;
 	-webkit-animation: rotateRightSideFirst 0.5s forwards ease-in;
@@ -544,7 +544,7 @@ perspective effects (not including the modals and the overlay).
 	100% { transform: translateZ(-200px); }
 }
 
-.md-effect-18 .message-text {
+.biscuit-effect-18  {
 	-webkit-transform: translateX(200%);
 	-moz-transform: translateX(200%);
 	-ms-transform: translateX(200%);
@@ -552,7 +552,7 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-18 .message-text {
+.biscuit-show.biscuit-effect-18  {
 	-webkit-transform: translateX(0);
 	-moz-transform: translateX(0);
 	-ms-transform: translateX(0);
@@ -564,19 +564,19 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 19:  Slip in from the top with perspective on container */
-.md-show.md-effect-19 ~ .container {
+.biscuit-show.biscuit-effect-19 ~ .container {
 	height: 100%;
 	overflow: hidden;
 }
 
-.md-show.md-effect-19 ~ .md-overlay {
+.biscuit-show.biscuit-effect-19 ~ .biscuit-overlay {
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
 }
 
-.md-show.md-effect-19 ~ .container,
-.md-show.md-effect-19 ~ .md-overlay {
+.biscuit-show.biscuit-effect-19 ~ .container,
+.biscuit-show.biscuit-effect-19 ~ .biscuit-overlay {
 	-webkit-transform-style: preserve-3d;
 	-webkit-transform-origin: 50% 100%;
 	-webkit-animation: OpenTop 0.5s forwards ease-in;
@@ -609,7 +609,7 @@ perspective effects (not including the modals and the overlay).
 	}
 }
 
-.md-effect-19 .message-text {
+.biscuit-effect-19  {
 	-webkit-transform: translateY(-200%);
 	-moz-transform: translateY(-200%);
 	-ms-transform: translateY(-200%);
@@ -617,7 +617,7 @@ perspective effects (not including the modals and the overlay).
 	opacity: 0;
 }
 
-.md-show.md-effect-19 .message-text {
+.biscuit-show.biscuit-effect-19  {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);

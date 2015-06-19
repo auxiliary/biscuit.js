@@ -235,7 +235,7 @@
 		}, this.settings.delay);
 
 		window.setTimeout(function() {
-            $(messaging_context.element).addClass("md-show");
+            $(messaging_context.element).addClass("biscuit-show");
 			closer.on('click', function() {
 				// Remove animate.css class first or fade fails
 				$(messaging_context.element).removeClass('animated flipInY')
@@ -288,7 +288,7 @@
             .slideUp(this.settings.text_show_delay, function(){
                 $(this).addClass('hide')
                     .removeAttr('style')
-                    .removeClass('md-show animated flipInY')
+                    .removeClass('biscuit-show animated flipInY')
             });
 
         $(this.element).trigger("message_hide", {
@@ -303,7 +303,7 @@
         'text_show_delay'               : 200,
         'text'                          : '',
         'level'                         : 'info',
-        'effect'                        : 'md-effect-1',
+        'effect'                        : 'biscuit-effect-1',
         'path'                          : '/',
         'icon'                          : '',
         'no_duplicates'                 : true,
