@@ -4,8 +4,6 @@
      */
     $.fn.biscuit = function(options)
     {
-        $.cookie.json = true;
-
         /*
          * If desktop_notifications is true then ask for permission
          */
@@ -28,7 +26,7 @@
                  * Getting crazy and merging settings with individual message
                  * settings to enable more global settings, if needed.
                  */
-                var global_settings = {}
+                var global_settings = {};
                 for (var key in options)
                 {
                     if (key !== 'messages')
@@ -47,7 +45,7 @@
          */
         else if (options === 'display')
         {
-            var cookie_messages = $.cookie('messages');
+            var cookie_messages = Cookies.getJSON('messages');
             for (var i in cookie_messages)
             {
                 var settings = $.extend({}, $.fn.biscuit.settings, cookie_messages[i]);
@@ -93,7 +91,7 @@
                 if (options === 'remove_all')
                 {
                     // Remove all messages from the cookie and the DOM
-                    $.removeCookie('messages', {path: $.fn.biscuit.settings.path});
+                    Cookies.remove('messages', {path: $.fn.biscuit.settings.path});
                     $(this).html('');
                 }
                 if (options === 'hide_all')
@@ -171,8 +169,8 @@
             )
         );
 
-		return message_div;
-    };
+        return message_div;
+    }
 
     /*
      * Add a message along with its settings to the cookie
@@ -180,12 +178,12 @@
     function add_to_cookie(settings)
     {
         //Get current list of messages from cookie
-        var cookie_messages = $.cookie('messages');
+        var cookie_messages = Cookies.getJSON('messages');
         if (cookie_messages === undefined)
         {
-            var cookie = []
+            var cookie = [];
             cookie.push(settings);
-            $.cookie('messages', cookie, {'path': $.fn.biscuit.settings.path});
+            Cookies.set('messages', cookie, {'path': $.fn.biscuit.settings.path});
         }
         else
         {
@@ -201,16 +199,16 @@
                 }
             }
             cookie_messages.push(settings);
-            $.cookie('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
+            Cookies.set('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
         }
-    };
+    }
 
     /*
      * Remove a message from the cookie and trigger the user defined callback
      */
     Biscuit.prototype.remove_from_cookie = function()
     {
-        var cookie_messages = $.cookie('messages');
+        var cookie_messages = Cookies.getJSON('messages');
         for (var i in cookie_messages)
         {
             if (this.settings.text == cookie_messages[i].text)
@@ -218,7 +216,7 @@
                 cookie_messages.splice(i, 1); //Remove from the cookie queue
             }
         }
-        $.cookie('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
+        Cookies.set('messages', cookie_messages, {'path': $.fn.biscuit.settings.path});
 
         $(this.element).trigger("message_remove", {
             id  : this.settings.id,
@@ -235,26 +233,26 @@
         var messaging_context   = this;
 
         // Animations for showing the message
-		window.setTimeout(function() {
-			$(messaging_context.element).removeClass('hide').addClass('animated flipInY');
-		}, this.settings.delay);
+        window.setTimeout(function() {
+            $(messaging_context.element).removeClass('hide').addClass('animated flipInY');
+        }, this.settings.delay);
 
-		window.setTimeout(function() {
+        window.setTimeout(function() {
             $(messaging_context.element).addClass("biscuit-show");
-			closer.on('click', function() {
-				// Remove animate.css class first or fade fails
-				$(messaging_context.element).removeClass('animated flipInY')
-					.fadeTo(messaging_context.settings.text_show_delay, 0)
+            closer.on('click', function() {
+                // Remove animate.css class first or fade fails
+                $(messaging_context.element).removeClass('animated flipInY')
+                    .fadeTo(messaging_context.settings.text_show_delay, 0)
                     .slideUp(messaging_context.settings.text_show_delay);
 
                 $(messaging_context.element).biscuit("remove_from_cookie");
-			});
+            });
 
             //If minimize button was clicked, hide but don't delete from cookie
             minimizer.on('click', function(){
                 messaging_context.hide();
             });
-		}, this.settings.delay + this.settings.text_show_delay);
+        }, this.settings.delay + this.settings.text_show_delay);
 
         /*
          * Show desktop notifications if enabled.
@@ -277,7 +275,7 @@
             }
         }, 100);
 
-        if (this.settings.persistent == false)
+        if (this.settings.persistent === false)
         {
             this.remove_from_cookie();
         }
@@ -293,7 +291,7 @@
             .slideUp(this.settings.text_show_delay, function(){
                 $(this).addClass('hide')
                     .removeAttr('style')
-                    .removeClass('biscuit-show animated flipInY')
+                    .removeClass('biscuit-show animated flipInY');
             });
 
         $(this.element).trigger("message_hide", {
