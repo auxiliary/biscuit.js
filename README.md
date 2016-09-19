@@ -8,7 +8,7 @@ A customizable cookie based jQuery notification plugin with nifty animations and
 
 ## Dependencies
 - jQuery
-- [jQuery-cookie](https://github.com/carhartl/jquery-cookie)
+- [js-cookie](https://github.com/js-cookie/js-cookie)
 - Currently, [FontAwesome](http://fortawesome.github.io/Font-Awesome/) if you want the default notification icons
 
 ## Usage
